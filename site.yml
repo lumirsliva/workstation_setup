@@ -1,0 +1,11 @@
+---
+
+- hosts: jump
+
+  roles:
+    - SUSEConnect
+    - useradd
+    - copy
+    - zypper_pip
+    - prepare_automation_repo
+

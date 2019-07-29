@@ -1,0 +1,22 @@
+---
+
+ - name: Prepare automation repo
+   git:
+    repo: https://github.com/SUSE-Cloud/automation
+    dest: /home/yo/cloud
+    key_file: /Users/yo/.ssh/celtics.pem
+   become: yes
+   become_user: yo
+   tags:
+     - git
+
+ - name: Copy my ssh keys file to repo
+   copy:
+     src: /Users/yo/Work/openstack/cloud/automation/scripts/jenkins/cloud/ansible/group_vars/all/ssh_pub_keys.yml
+     dest: /home/yo/cloud/scripts/jenkins/cloud/ansible/group_vars/all/ssh_pub_keys.yml
+     owner: yo
+     group: users
+     mode: u=rw,g=r,o=r
+   become: yes
+   tags:
+     - copysshrepo

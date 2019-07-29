@@ -1,0 +1,42 @@
+---
+
+- name: Install python and python-xml for LEAP
+  vars:
+    packages_a: [python,python-xml]
+  command: 'zypper in {{ item }}'
+  become: yes
+  with_items: '{{ packages_a }}'
+  when: ansible_distribution == 'openSUSE Leap'
+  tags:
+    - leap
+
+- name: Install zypper pkgs
+  vars:
+    packages_z: [python-devel,python3-devel,python3-pip,python3-setuptools,wget,gcc,git-core]
+  zypper:
+    name: '{{ item }}'
+    state: present
+  with_items: '{{ packages_z }}'
+  become: yes
+  tags:
+    - zypper
+
+- name: Install pip3 with easy_install
+  easy_install:
+    name: pip
+    state: present
+  become: yes
+  tags:
+    - pip
+
+- name: Install pip packages
+  vars:
+    packages_p: [virtualenv,ansible==2.6.0,openstackclient]
+  pip:
+    name: '{{ item }}'
+    state: present
+    executable: pip3
+  with_items: '{{ packages_p }}'
+  become: yes
+  tags:
+    - pippkgs

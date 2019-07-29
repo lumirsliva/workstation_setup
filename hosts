@@ -1,0 +1,11 @@
+
+
+[jump]
+1 ansible_ssh_host=10.86.2.18 ansible_ssh_private_key_file=/Users/yo/.ssh/celtics.pem ansible_user=root
+2 ansible_ssh_host=10.86.3.9 ansible_ssh_private_key_file=/Users/yo/.ssh/celtics.pem ansible_user=root
+leap ansible_ssh_host=10.86.3.60 ansible_ssh_private_key_file=/Users/yo/.ssh/celtics.pem ansible_user=opensuse
+
+[allvars]
+10.86.2.18 ansible_ssh_private_key_file=/Users/yo/.ssh/celtics.pem ansible_user=root
+10.86.3.9 ansible_ssh_private_key_file=/Users/yo/.ssh/celtics.pem ansible_user=root
+10.86.3.60 ansible_ssh_private_key_file=/Users/yo/.ssh/celtics.pem ansible_user=opensuse

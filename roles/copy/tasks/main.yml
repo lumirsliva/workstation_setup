@@ -1,0 +1,51 @@
+---
+- name: Create .config/openstack directory
+  file:
+    path: /home/yo/.config/openstack/
+    state: directory
+    owner: yo
+    group: users
+  become: yes
+
+- name: Copy clouds.yaml with owner and permissions
+  copy:
+    src: /Users/yo/.config/openstack/clouds.yaml
+    dest: /home/yo/.config/openstack/clouds.yaml
+    owner: yo
+    group: users
+    mode: u=rw,g=r,o=r
+  become: yes
+  tags:
+    - clouds.yaml
+
+- name: Copy SUSE_Trust_Root.crt with owner and permissions
+  copy:
+    src: /Users/yo/Work/SUSE_Trust_Root.crt
+    dest: /home/yo/SUSE_Trust_Root.crt
+    owner: yo
+    group: users
+    mode: u=rw,g=r,o=r
+  become: yes
+
+- name: Copy support-openrc.sh
+  copy:
+    src: /Users/yo/support-openrc.sh
+    dest: /home/yo/support-openrc.sh
+    owner: yo
+    group: users
+    mode: u=rw,g=r,o=r
+  become: yes
+  tags:
+    - copyopenrc
+
+- name: Adjust clouds.yaml
+  lineinfile:
+    path: '/home/yo/.config/openstack/clouds.yaml'
+    regexp: '^(.*)/Users/yo/Work/SUSE_Trust_Root.crt(.*)$'
+    line: '    cacert: /home/yo/SUSE_Trust_Root.crt'
+    backrefs: yes
+    owner: yo
+    group: users
+  become: yes
+  tags:
+    - adjust

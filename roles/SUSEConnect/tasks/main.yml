@@ -1,0 +1,13 @@
+---
+
+- name: SUSEConnect register
+  command: 'SUSEConnect -r INTERNAL-USE-ONLY-dddb-0120 -e lumir.sliva@suse.com'
+  when: ansible_distribution == 'SLES'
+  tags:
+    - SUSEConnect
+
+- name: add SDK extension
+  command: 'SUSEConnect -p sle-sdk/12.3/x86_64'
+  when: ansible_distribution == 'SLES'
+  tags:
+    - SDK

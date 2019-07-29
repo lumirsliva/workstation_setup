@@ -1,0 +1,11 @@
+---
+
+- name: SUSEConnect register
+  command: 'SUSEConnect -r INTERNAL-USE-ONLY-dddb-0120 -e lumir.sliva@suse.com'
+  tags:
+    - SUSEConnect
+
+- name: add SDK extension
+  comman: 'SUSEConnect -p sle-sdk/12.3/x86_64'
+  tags:
+    - SDK

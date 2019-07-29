@@ -1,0 +1,8 @@
+---
+
+- hosts: jump
+  become: True
+  user: yo
+
+  roles:
+    - useradd
